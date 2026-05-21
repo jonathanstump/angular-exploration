@@ -1,0 +1,50 @@
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+
+header {
+  background: #0a0a1a;
+  border-bottom: 4px solid #ff00ff;
+  box-shadow:
+    0 4px 0 #7700aa,
+    0 0 20px #ff00ff44,
+    inset 0 -2px 0 #ff00ff66;
+  padding: 0;
+  position: relative;
+  overflow: hidden;
+
+  &::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: repeating-linear-gradient(
+      0deg,
+      transparent,
+      transparent 2px,
+      rgba(255, 255, 255, 0.02) 2px,
+      rgba(255, 255, 255, 0.02) 4px
+    );
+    pointer-events: none;
+  }
+}
+
+nav {
+  font-family: 'Press Start 2P', monospace;
+  font-size: 1.5rem;
+  color: #ffff00;
+  text-align: center;
+  padding: 1.25rem 2rem;
+  letter-spacing: 2px;
+  text-shadow:
+    2px 2px 0 #ff6600,
+    4px 4px 0 #cc3300,
+    0 0 10px #ffff00aa,
+    0 0 20px #ff660066;
+  animation: flicker 4s infinite;
+}
+
+@keyframes flicker {
+  0%, 95%, 100% { opacity: 1; }
+  96% { opacity: 0.8; }
+  97% { opacity: 1; }
+  98% { opacity: 0.6; }
+  99% { opacity: 1; }
+}
