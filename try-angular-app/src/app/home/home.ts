@@ -1,5 +1,6 @@
-import { Component, signal, ViewChild } from '@angular/core';
+import { Component, inject, signal } from '@angular/core';
 import { Counter } from '../components/counter/counter';
+import { CounterService } from '../services/counter.service';
 
 @Component({
   selector: 'app-home',
@@ -8,11 +9,11 @@ import { Counter } from '../components/counter/counter';
   styleUrl: './home.scss',
 })
 export class Home {
-  @ViewChild(Counter) counter!: Counter;
+  private cs = inject(CounterService);
   expanded = signal(false);
 
   increment() {
-    this.counter.increment();
+    this.cs.increment();
   }
 
   expand() {

@@ -1,0 +1,22 @@
+<div class="upgrades-panel">
+  <div class="upgrade-header">
+    <span class="upgrade-title">UPGRADES</span>
+    <span class="multiplier-badge">x{{ cs.multiplier() }} MULTIPLIER</span>
+  </div>
+
+  <button
+    class="upgrade-bar"
+    [class.ready]="cs.counterValue() >= cs.nextRequirement() && !cs.isMaxLevel()"
+    [disabled]="cs.counterValue() < cs.nextRequirement() || cs.isMaxLevel()"
+    (click)="cs.upgradeMultiplier()"
+  >
+    <div class="bar-fill" [style.width.%]="cs.progress()"></div>
+    <span class="bar-label">
+      @if (cs.isMaxLevel()) {
+        MAX LEVEL
+      } @else {
+        {{ cs.counterValue() }} / {{ cs.nextRequirement() }} &nbsp;&mdash;&nbsp; UPGRADE!
+      }
+    </span>
+  </button>
+</div>

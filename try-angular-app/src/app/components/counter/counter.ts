@@ -1,4 +1,5 @@
-import { Component, signal } from '@angular/core';
+import { Component, inject } from '@angular/core';
+import { CounterService } from '../../services/counter.service';
 
 @Component({
   selector: 'app-counter',
@@ -7,17 +8,13 @@ import { Component, signal } from '@angular/core';
   styleUrl: './counter.scss',
 })
 export class Counter {
-  counterValue = signal(0);
+  cs = inject(CounterService);
 
-  increment() {
-    this.counterValue.update((val) => val + 1);
-  }
+  get counterValue() { return this.cs.counterValue; }
+  get multiplier()   { return this.cs.multiplier; }
 
-  decrement() {
-    this.counterValue.update((val) => val - 1);
-  }
-
-  reset() {
-    this.counterValue.set(0);
-  }
+  increment() { this.cs.increment(); }
+  decrement() { this.cs.counterValue.update((val) => val - 1); }
+  reset()     { this.cs.counterValue.set(0); }
+  subtract(amount: number) { this.cs.subtract(amount); }
 }
