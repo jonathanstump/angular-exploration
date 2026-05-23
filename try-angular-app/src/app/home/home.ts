@@ -1,17 +1,22 @@
-import { Component, signal } from '@angular/core';
-import { Greeting } from '../components/greeting/greeting';
+import { Component, signal, ViewChild } from '@angular/core';
 import { Counter } from '../components/counter/counter';
 
 @Component({
   selector: 'app-home',
-  imports: [Greeting, Counter],
+  imports: [Counter],
   templateUrl: './home.html',
   styleUrl: './home.scss',
 })
 export class Home {
-  homeMessage = signal('Cookie Clicker in development!');
+  @ViewChild(Counter) counter!: Counter;
+  expanded = signal(false);
 
-  keyUpHandler(event: KeyboardEvent) {
-    console.log(`User pressed the ${event.key} key`);
+  increment() {
+    this.counter.increment();
+  }
+
+  expand() {
+    this.expanded.set(true);
+    setTimeout(() => this.expanded.set(false), 300);
   }
 }

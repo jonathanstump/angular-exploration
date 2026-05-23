@@ -1,3 +1,10 @@
-<app-greeting [message]="homeMessage()" />
-<app-counter />
-<input placeholder="type something" type="text" (keyup)="keyUpHandler($event)" />
+<div class="home">
+  <img
+    (click)="increment(); expand()"
+    class="hero-image"
+    [class.expanded]="expanded()"
+    src="retro-cartoon.webp"
+    alt="Retro cartoon cookie character"
+  />
+  <app-counter />
+</div>
